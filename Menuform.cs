@@ -18,6 +18,10 @@ namespace Hornik_Lojza
         public Menuform()
         {
             InitializeComponent();
+            toolTip2.SetToolTip(novaHra_tlacitko, "Nová hra");
+            toolTip2.SetToolTip(nastaveni_tlacitko, "Změnění nastavení kláves");
+            toolTip2.SetToolTip(tutorial_tlacitko, "Zobrazení krátkého tutoriálu, který vysvětluje jak hru hrát");
+            toolTip2.SetToolTip(Ukoncit_tlacitko, "Ukončit hru");
         }
 
         private void Ukoncit_tlacitko_Click(object sender, EventArgs e)
@@ -44,18 +48,29 @@ namespace Hornik_Lojza
 
         private void nastaveni_tlacitko_Click(object sender, EventArgs e)
         {
-            //nasměruje hráče na form s nastavením. Bude možné přenastavit tlačítko pro pohyb a vykonávání akcí
-            //(pozn. - možná bude snažší když použiju stejný formulář?)
+            novaHra_tlacitko.Hide();
+            nastaveni_tlacitko.Hide();
+            tutorial_tlacitko.Hide();
+            zpatkytlacitko.Show();
+            //Předělá formulář na nastavení 
+        }
+
+        private void zpatkytlacitko_Click(object sender, EventArgs e)
+        {
+            novaHra_tlacitko.Show();
+            nastaveni_tlacitko.Show();
+            tutorial_tlacitko.Show();
+            zpatkytlacitko.Hide();
         }
         /* co potřebuju udělat:
-         * 1) Přidat popup dialogy i na menuform
-         * 2) Ošetřit kód, aby kameny nemohly na startu zablokovat Lojzu
-         * 3) Udělat nastavení, kde půjde nastavit vlastní klávesy
-         * 4) Udělat nastavení pro vlastní hru
-         * 5) Úspěšně poslat hodnoty nastavení a vlastní hry a použít je ve formu1
-         * 6)Udělat to tak, aby se menuform otevřel po dokončení hry
+         * 1) Ošetřit kód, aby kameny nemohly na startu zablokovat Lojzu
+         * 2) Udělat nastavení, kde půjde nastavit vlastní klávesy
+         * 3) Udělat nastavení pro vlastní hru
+         * 4) Úspěšně poslat hodnoty nastavení a vlastní hry a použít je ve formu1
+         * 5)Udělat to tak, aby se menuform otevřel po dokončení hry
+         * 6)Použití zdí (10%?)
          * 7)Hudba?
-         * 8) Napřátelé?
+         * 8)Napřátelé?
          * 9)Bonusy?
          * 10)Na čas?
          */

@@ -41,8 +41,8 @@ namespace Hornik_Lojza
 
         private void vlastnihra_tlacitko_Click(object sender, EventArgs e)
         {
-            vlastnihra_tlacitko.Visible = false;
-            standartihra_tlacitko.Visible = false;
+            vlastnihra_tlacitko.Hide();
+            standartihra_tlacitko.Hide();
             //Skryje tlačítka a ukáže nové ovládací prvky, sloužící pro výběr parametrů vlastní hry
             //(pozn. - v budoucnu)
         }

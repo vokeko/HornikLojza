@@ -28,10 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.novaHra_tlacitko = new System.Windows.Forms.Button();
             this.nastaveni_tlacitko = new System.Windows.Forms.Button();
             this.tutorial_tlacitko = new System.Windows.Forms.Button();
             this.Ukoncit_tlacitko = new System.Windows.Forms.Button();
+            this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
+            this.zpatkytlacitko = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // novaHra_tlacitko
@@ -74,6 +77,17 @@
             this.Ukoncit_tlacitko.UseVisualStyleBackColor = true;
             this.Ukoncit_tlacitko.Click += new System.EventHandler(this.Ukoncit_tlacitko_Click);
             // 
+            // zpatkytlacitko
+            // 
+            this.zpatkytlacitko.Location = new System.Drawing.Point(380, 303);
+            this.zpatkytlacitko.Name = "zpatkytlacitko";
+            this.zpatkytlacitko.Size = new System.Drawing.Size(90, 29);
+            this.zpatkytlacitko.TabIndex = 4;
+            this.zpatkytlacitko.Text = "Zpátky";
+            this.zpatkytlacitko.UseVisualStyleBackColor = true;
+            this.zpatkytlacitko.Visible = false;
+            this.zpatkytlacitko.Click += new System.EventHandler(this.zpatkytlacitko_Click);
+            // 
             // Menuform
             // 
             this.AcceptButton = this.novaHra_tlacitko;
@@ -81,6 +95,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.ClientSize = new System.Drawing.Size(482, 344);
             this.ControlBox = false;
+            this.Controls.Add(this.zpatkytlacitko);
             this.Controls.Add(this.Ukoncit_tlacitko);
             this.Controls.Add(this.tutorial_tlacitko);
             this.Controls.Add(this.nastaveni_tlacitko);
@@ -103,5 +118,7 @@
         private System.Windows.Forms.Button nastaveni_tlacitko;
         private System.Windows.Forms.Button tutorial_tlacitko;
         private System.Windows.Forms.Button Ukoncit_tlacitko;
+        private System.Windows.Forms.ToolTip toolTip2;
+        private System.Windows.Forms.Button zpatkytlacitko;
     }
 }
