@@ -65,20 +65,19 @@
             this.vratitse_tlacitko.UseVisualStyleBackColor = true;
             this.vratitse_tlacitko.Click += new System.EventHandler(this.vratitse_tlacitko_Click);
             // 
-            // toolTip1
-            // 
-            this.toolTip1.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip1_Popup);
-            // 
             // Typhrydialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(379, 226);
+            this.ControlBox = false;
             this.Controls.Add(this.vratitse_tlacitko);
             this.Controls.Add(this.vlastnihra_tlacitko);
             this.Controls.Add(this.standartihra_tlacitko);
             this.Name = "Typhrydialog";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Typhrydialog";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.Typhrydialog_Load);
             this.ResumeLayout(false);
 

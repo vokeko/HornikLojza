@@ -93,7 +93,6 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Hlavní menu";
-            this.Load += new System.EventHandler(this.Menuform_Load);
             this.ResumeLayout(false);
 
         }

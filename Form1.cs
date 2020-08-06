@@ -13,6 +13,7 @@ namespace Hornik_Lojza
     enum Smer
     {
         Doprava, Doleva, Nahoru, Dolu
+        //enum pro určení, kterým směrem je postava hráče otočená. Je takhle bokem, aby se k ní dostala i třída postavy.
     }
     public partial class HerniOkno : Form
     {
@@ -41,21 +42,22 @@ namespace Hornik_Lojza
         enum StavyPolicek
         {
             Nevykopano,Vykopano,Prekazka,Drahokam,Smaragd,Vychod
-            //Enum rozlišuje, co políčka obsahují
+            //Enum rozlišuje, co políčka mapy obsahují.
         }
         StavyPolicek[,] Mapa = new StavyPolicek[MAPA_SIRKA, MAPA_VYSKA];
         // Mapa uchovává hodnoty pro jednotlivé pole v úrovni
         Timer casovac = new Timer();
-
+        //časovač se aktivuje jednou za určitou dobu. Kontroluje, jestli jsou na herní ploše kameny, které by mohly spadnout
         public HerniOkno()
         {
             InitializeComponent();
             VygenerujMapu();
             Hrac = new PostavaHrace();
-            //konstruktor, který se spustí zavolá funkci Vygeneruj mapu a vytvoří novou instanci třídy hráč
+            //konstruktor, který když se spustí zavolá funkci Vygeneruj mapu a vytvoří novou instanci třídy hráč
             casovac.Interval = 125;
             casovac.Tick += TiknutiCasovace;
             casovac.Start();
+            //konstruktor nastaví interval časovače, spustí ho a přidělí mu funkci TiknutiCasovace
         }
 
         private void HerniOkno_Load(object sender, EventArgs e)
@@ -183,26 +185,31 @@ namespace Hornik_Lojza
                     break;
             }
             g.DrawImage(ObrazekKvykresleni, Hrac.X * polickoRozmer, Hrac.Y * polickoRozmer);
+            //funkce, která vykreslí postavu podle toho, na jaký směr je otočená.
         }
         private void VykresliText(Graphics g)
         {
             Font pismo = new Font("Arial", 12);
             g.DrawString("Počet kroků: " + Hrac.PocetKroku, pismo, Brushes.White, 5, 560);
             g.DrawString("Zbývá sebrat předmětů: " + PocetPredmetu, pismo, Brushes.White, 5, 575);
+            //Funkce na dolejšek formu vykreslí kolik zbývá předmětů a kolik hráč udělal kroků.
         }
         private bool ZkontrolujPolicko(int x, int y)
         {
             return Mapa[x, y] != StavyPolicek.Prekazka;
+            //Funkce kontroluje, jestli je dané políčko překážka (kámen)
         }
         private void KonecHry(string zprava)
         {
             casovac.Stop();
             MessageBox.Show(zprava, "Skvělá dobrodružství horníka Lojzy!");
             Application.Exit();
+            //Při konci hry se zastaví časovač, ukáže se příslušná zpráva (dopbrá nebo špatná) a ukončí se aplikace.
         }
         private void TiknutiCasovace(object o, EventArgs e)
         {
             ZkontrolujPrekazky();
+            //event, který se spustí při tiknutí časovače
         }
         private void ZkontrolujPrekazky()
         {
@@ -221,13 +228,14 @@ namespace Hornik_Lojza
                             this.Invalidate();
                             if (Mapa[X, Y + 1] == Mapa[Hrac.X, Hrac.Y])
                             {
-                                KonecHry("Prohráli jste na plné čáře :(!");
+                                KonecHry("Prohráli jste na plné čáře !");
                                 return;
                             }
                         }
                     }
                 }
             }
+            //Kontroluje, jestli na hráče nespadl kámen (tj. - konec hry)
         }
         private void HerniOkno_Paint(object sender, PaintEventArgs e)
         {
@@ -239,6 +247,7 @@ namespace Hornik_Lojza
 
         private void HerniOkno_KeyDown(object sender, KeyEventArgs e)
         {
+            //Rozsáhlá funkce pro pohyb
             if(e.Control)
             {
                 switch(e.KeyCode)
@@ -257,6 +266,7 @@ namespace Hornik_Lojza
                             Mapa[Hrac.X - 2, Hrac.Y] = StavyPolicek.Prekazka;
                         }
                         break;
+                        //tahle část kódu je spuštěna, pokud hráč drží ctrl + šipku doleva nebo prava. Pokud je v tom směru od postavy kámen a o políčko volno je prázdno, pak se tam posune.
                 }
                 this.Invalidate();
             }
@@ -290,6 +300,7 @@ namespace Hornik_Lojza
                         {
                             Hrac.PocetKroku++;
                             Hrac.Y++;
+                            //Tahle část kódu kontroluje, jestli hráč se může tím směrem pohnout, když klikne klávesu pro pohyb. Nemůže se tak stát v případě, že se snaží posunout za okraj mapy, nebo na políčko kamene
                         }
                         break;
                 }
@@ -308,6 +319,7 @@ namespace Hornik_Lojza
                     KonecHry("Vyhrál jsi!");
                     return;
                 }
+                //Tato část kódu kontroluje, na jaké políčko hráč vstupuje. Pokud je nevykopané, vykopá se. Pokud je to drahokam, vykopá se a sníží se počet předmětů, co jsou zapotřebí. Pokud je to políčko pro východ, tak se zkontroluje jestli hráč sebral všechny předměty.
             }
         }
     }
