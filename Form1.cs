@@ -12,7 +12,7 @@ namespace Hornik_Lojza
 {
     enum Smer
     {
-        Doprava, Doleva, Nahoru, Dolu
+        Doprava, Doleva, Nahoru, Dolu, Mrtvy
         //enum pro určení, kterým směrem je postava hráče otočená. Je takhle bokem, aby se k ní dostala i třída postavy.
     }
     public partial class HerniOkno : Form
@@ -180,6 +180,10 @@ namespace Hornik_Lojza
                 case Smer.Dolu:
                     ObrazekKvykresleni = G_Hrac_Dolu;
                     break;
+                case Smer.Mrtvy:
+                    Bitmap prazdny = new Bitmap(40,40);
+                    ObrazekKvykresleni = prazdny;
+                    break;
                 default:
                     ObrazekKvykresleni = G_Hrac_Vpravo;
                     break;
@@ -202,6 +206,8 @@ namespace Hornik_Lojza
         private void KonecHry(string zprava)
         {
             casovac.Stop();
+            Hrac.jeMrtvy(true);
+            this.Invalidate();
             MessageBox.Show(zprava, "Skvělá dobrodružství horníka Lojzy!");
             Application.Exit();
             //Při konci hry se zastaví časovač, ukáže se příslušná zpráva (dopbrá nebo špatná) a ukončí se aplikace.
@@ -225,7 +231,6 @@ namespace Hornik_Lojza
                             pouzitaPolicka[X, Y + 1] = true;
                             Mapa[X, Y] = StavyPolicek.Vykopano;
                             Mapa[X, Y + 1] = StavyPolicek.Prekazka;
-                            this.Invalidate();
                             if (Mapa[X, Y + 1] == Mapa[Hrac.X, Hrac.Y])
                             {
                                 KonecHry("Prohráli jste na plné čáře !");
@@ -235,6 +240,7 @@ namespace Hornik_Lojza
                     }
                 }
             }
+            this.Invalidate();
             //Kontroluje, jestli na hráče nespadl kámen (tj. - konec hry)
         }
         private void HerniOkno_Paint(object sender, PaintEventArgs e)

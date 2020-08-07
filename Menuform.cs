@@ -70,7 +70,7 @@ namespace Hornik_Lojza
          * 5)Udělat to tak, aby se menuform otevřel po dokončení hry
          * 6)Použití zdí (10%?)
          * 7)Hudba?
-         * 8)Napřátelé?
+         * 8)Nepřátelé?
          * 9)Bonusy?
          * 10)Na čas?
          */

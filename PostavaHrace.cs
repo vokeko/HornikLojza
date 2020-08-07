@@ -72,5 +72,13 @@ namespace Hornik_Lojza
             //konstruktor přiřadí obrazek(poslaný image typ) Grafice - tj. přiřadí postavě při vytvoření obrázek pro pohyb doprava.
             Smerhrace = Smer.Doprava;
         }
+        public void jeMrtvy(bool mrtev = false)
+        {
+            if (mrtev)
+            {
+                Smerhrace = Smer.Mrtvy;
+            }
+            //funkce na změnění směru na "mrtvy". Instance s touto hodnotou bude vykreslena jako prázdný obrázek.
+        }
     }
 }
