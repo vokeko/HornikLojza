@@ -48,13 +48,19 @@ namespace Hornik_Lojza
         // Mapa uchovává hodnoty pro jednotlivé pole v úrovni
         Timer casovac = new Timer();
         //časovač se aktivuje jednou za určitou dobu. Kontroluje, jestli jsou na herní ploše kameny, které by mohly spadnout
-        public HerniOkno()
+
+        private readonly uint cisloprekazek;
+        private readonly uint cislodrahokamu;
+
+        public HerniOkno(int casovyInterval = 125, uint _cisloprekazek = 30, uint _cislodrahokamu = 10)
         {
+            cisloprekazek = _cisloprekazek;
+            cislodrahokamu = _cislodrahokamu;
             InitializeComponent();
             VygenerujMapu();
             Hrac = new PostavaHrace();
             //konstruktor, který když se spustí zavolá funkci Vygeneruj mapu a vytvoří novou instanci třídy hráč
-            casovac.Interval = 125;
+            casovac.Interval = casovyInterval;
             casovac.Tick += TiknutiCasovace;
             casovac.Start();
             //konstruktor nastaví interval časovače, spustí ho a přidělí mu funkci TiknutiCasovace
@@ -84,7 +90,7 @@ namespace Hornik_Lojza
             Mapa[0, 0] = StavyPolicek.Vykopano;
             //pak stanoví, že 0,0 bude startovní bod pro hráče - proto Hodnota Vykopano
             int RozmistenePrekazky = 0;
-            while (RozmistenePrekazky < 30)
+            while (RozmistenePrekazky < cisloprekazek)
             {
                 int NahodaX = generatorCisel.Next(0, MAPA_SIRKA);
                 int NahodaY = generatorCisel.Next(0, MAPA_VYSKA);
@@ -96,7 +102,7 @@ namespace Hornik_Lojza
             }
             //pak rozmístí náhodně 30 překážek. Pokud se náhodně vygeneruje již obsazené místo (Vykopano nebo již daná překážka), tak se vybere jiné místo (tj.-proběhne cyklus na prázdno)
             int RozmistenePredmety = 0;
-            while(RozmistenePredmety<10)
+            while (RozmistenePredmety < cislodrahokamu)
             {
                 int NahodaX = generatorCisel.Next(0, MAPA_SIRKA);
                 int NahodaY = generatorCisel.Next(0, MAPA_VYSKA);

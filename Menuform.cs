@@ -65,14 +65,12 @@ namespace Hornik_Lojza
         /* co potřebuju udělat:
          * 1) Ošetřit kód, aby kameny nemohly na startu zablokovat Lojzu
          * 2) Udělat nastavení, kde půjde nastavit vlastní klávesy
-         * 3) Udělat nastavení pro vlastní hru
-         * 4) Úspěšně poslat hodnoty nastavení a vlastní hry a použít je ve formu1
-         * 5)Udělat to tak, aby se menuform otevřel po dokončení hry
-         * 6)Použití zdí (10%?)
-         * 7)Hudba?
-         * 8)Nepřátelé?
-         * 9)Bonusy?
-         * 10)Na čas?
+         * 3)Udělat to tak, aby se menuform otevřel po dokončení hry
+         * 4)Použití zdí (10%?)
+         * 5)Hudba?
+         * 6)Nepřátelé?
+         * 7)Bonusy?
+         * 8)Na čas?
          */
     }
 }
