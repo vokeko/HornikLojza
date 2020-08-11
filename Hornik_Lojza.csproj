@@ -134,5 +134,8 @@
   <ItemGroup>
     <None Include="Resources\Kamen.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minin-all-day.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

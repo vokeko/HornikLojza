@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 
 namespace Hornik_Lojza
 {
@@ -29,6 +24,9 @@ namespace Hornik_Lojza
         Image G_Drahokam = Properties.Resources.Drahokam;
         Image G_Smaragd = Properties.Resources.Smaragd;
         //všechny obrázky přebíráme z properties.resources. 
+        SoundPlayer prehravac = new SoundPlayer(Properties.Resources.minin_all_day);
+        bool hraje = false;
+        // bool sleduje jestli hraje zvuk nebo ne.
 
         const int polickoRozmer = 40;
         //Všechny políčka mají rozměry 40x40
@@ -41,7 +39,7 @@ namespace Hornik_Lojza
         //Třída Postavahrace, mezitím bez nového zástupce
         enum StavyPolicek
         {
-            Nevykopano,Vykopano,Prekazka,Drahokam,Smaragd,Vychod
+            Nevykopano, Vykopano, Prekazka, Drahokam, Smaragd, Vychod
             //Enum rozlišuje, co políčka mapy obsahují.
         }
         StavyPolicek[,] Mapa = new StavyPolicek[MAPA_SIRKA, MAPA_VYSKA];
@@ -71,8 +69,23 @@ namespace Hornik_Lojza
             this.ClientSize = new Size(800, 600);
             this.BackColor = Color.Black;
             this.Icon = Properties.Resources.lojza_icon;
+            hraje = prohod();
             //Okno po nahrání stanoví velikost, barvu a ikonu
-            
+
+        }
+        private bool prohod()
+        {
+            //zastaví nebo spustí muziku podle toho jestli hraje nebo ne
+            if (hraje == true)
+            {
+                prehravac.Stop();
+                return false;
+            }
+            else
+            {
+                prehravac.PlayLooping();
+                return true;
+            }
         }
         private void VygenerujMapu()
         {
@@ -332,6 +345,10 @@ namespace Hornik_Lojza
                     return;
                 }
                 //Tato část kódu kontroluje, na jaké políčko hráč vstupuje. Pokud je nevykopané, vykopá se. Pokud je to drahokam, vykopá se a sníží se počet předmětů, co jsou zapotřebí. Pokud je to políčko pro východ, tak se zkontroluje jestli hráč sebral všechny předměty.
+            }
+            if (e.KeyCode == Keys.M)
+            {
+                hraje = prohod();
             }
         }
     }

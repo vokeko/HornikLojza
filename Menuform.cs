@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Hornik_Lojza
@@ -37,7 +30,7 @@ namespace Hornik_Lojza
         private void tutorial_tlacitko_Click(object sender, EventArgs e)
         {
             //Popis ovládání hry.
-            MessageBox.Show("Hra je jednoduchá. Hýbáte se šipkami - můžete sbírat drahokamy a těžit co vás napadne. Jakmile najdete všechny předměty, běžte do východu! Ale dejte pozor na padající kameny! Jestli vás jeden zavalí, tak je po všem! Kameny taky můžete odsunout na volné políčko držením tlačítko control a šipkou do strany.", "Tutoriál", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            MessageBox.Show("Hra je jednoduchá. Hýbáte se šipkami - můžete sbírat drahokamy a těžit co vás napadne. Jakmile najdete všechny předměty, běžte do východu! Ale dejte pozor na padající kameny! Jestli vás jeden zavalí, tak je po všem! Kameny taky můžete odsunout na volné políčko držením tlačítko control a šipkou do strany. Pro přepnutí hudby stiskněte tlačítko M.", "Tutoriál", MessageBoxButtons.OK, MessageBoxIcon.Question);
         }
 
         private void novaHra_tlacitko_Click(object sender, EventArgs e)
