@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.Media;
+using WMPLib;
 
 namespace Hornik_Lojza
 {
@@ -16,7 +17,6 @@ namespace Hornik_Lojza
         Image G_Hrac_Vlevo = Properties.Resources.panacek_vlevo;
         Image G_Hrac_Dolu = Properties.Resources.panacek_dolu;
         Image G_Hrac_Nahoru = Properties.Resources.panacek_nahoru;
-
         Image G_Nevykopano = Properties.Resources.Nevykopana_zeme;
         Image G_Vykopano = Properties.Resources.Vykopana_zeme;
         Image G_Prekazka = Properties.Resources.Kamen;
@@ -24,6 +24,7 @@ namespace Hornik_Lojza
         Image G_Drahokam = Properties.Resources.Drahokam;
         Image G_Smaragd = Properties.Resources.Smaragd;
         //všechny obrázky přebíráme z properties.resources. 
+
         SoundPlayer prehravac = new SoundPlayer(Properties.Resources.minin_all_day);
         bool hraje = false;
         // bool sleduje jestli hraje zvuk nebo ne.
@@ -71,7 +72,6 @@ namespace Hornik_Lojza
             this.Icon = Properties.Resources.lojza_icon;
             hraje = prohod();
             //Okno po nahrání stanoví velikost, barvu a ikonu
-
         }
         private bool prohod()
         {
@@ -222,11 +222,24 @@ namespace Hornik_Lojza
             return Mapa[x, y] != StavyPolicek.Prekazka;
             //Funkce kontroluje, jestli je dané políčko překážka (kámen)
         }
-        private void KonecHry(string zprava)
+        private void KonecHry(string zprava, bool vyhrat)
         {
             casovac.Stop();
             Hrac.jeMrtvy(true);
             this.Invalidate();
+            if (hraje)
+            {
+                if (vyhrat)
+                {
+                    SoundPlayer fanfara = new SoundPlayer(Properties.Resources.Victory);
+                    fanfara.Play();
+                }
+                else
+                {
+                    SoundPlayer fanfara = new SoundPlayer(Properties.Resources.dead);
+                    fanfara.Play();
+                }
+            }
             MessageBox.Show(zprava, "Skvělá dobrodružství horníka Lojzy!");
             Application.Exit();
             //Při konci hry se zastaví časovač, ukáže se příslušná zpráva (dopbrá nebo špatná) a ukončí se aplikace.
@@ -252,7 +265,7 @@ namespace Hornik_Lojza
                             Mapa[X, Y + 1] = StavyPolicek.Prekazka;
                             if (Mapa[X, Y + 1] == Mapa[Hrac.X, Hrac.Y])
                             {
-                                KonecHry("Prohráli jste na plné čáře !");
+                                KonecHry("Prohráli jste na plné čáře !", false);
                                 return;
                             }
                         }
@@ -341,7 +354,7 @@ namespace Hornik_Lojza
                 this.Invalidate();
                 if (Mapa[Hrac.X, Hrac.Y] == StavyPolicek.Vychod && PocetPredmetu == 0)
                 {
-                    KonecHry("Vyhrál jsi!");
+                    KonecHry("Vyhrál jsi!", true);
                     return;
                 }
                 //Tato část kódu kontroluje, na jaké políčko hráč vstupuje. Pokud je nevykopané, vykopá se. Pokud je to drahokam, vykopá se a sníží se počet předmětů, co jsou zapotřebí. Pokud je to políčko pro východ, tak se zkontroluje jestli hráč sebral všechny předměty.

@@ -61,12 +61,39 @@ namespace Hornik_Lojza.Properties {
         }
         
         /// <summary>
+        ///   Vyhledává lokalizovaný prostředek typu System.IO.UnmanagedMemoryStream podobný System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream dead {
+            get {
+                return ResourceManager.GetStream("dead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Vyhledává lokalizovaný prostředek typu System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Drahokam {
             get {
                 object obj = ResourceManager.GetObject("Drahokam", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Vyhledává lokalizovaný prostředek typu System.IO.UnmanagedMemoryStream podobný System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream fall {
+            get {
+                return ResourceManager.GetStream("fall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Vyhledává lokalizovaný prostředek typu System.IO.UnmanagedMemoryStream podobný System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Jingle {
+            get {
+                return ResourceManager.GetStream("Jingle", resourceCulture);
             }
         }
         
@@ -166,6 +193,15 @@ namespace Hornik_Lojza.Properties {
             get {
                 object obj = ResourceManager.GetObject("Smaragd", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Vyhledává lokalizovaný prostředek typu System.IO.UnmanagedMemoryStream podobný System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Victory {
+            get {
+                return ResourceManager.GetStream("Victory", resourceCulture);
             }
         }
         

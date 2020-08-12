@@ -37,9 +37,11 @@
             this.ClientSize = new System.Drawing.Size(282, 253);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.MinimizeBox = false;
+            this.MaximizeBox = false;
             this.Name = "HerniOkno";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Skvělá dobrodružství horníka Lojzy!";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.HerniOkno_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.HerniOkno_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HerniOkno_KeyDown);

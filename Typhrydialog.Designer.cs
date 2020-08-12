@@ -197,7 +197,7 @@
             this.Controls.Add(this.standartihra_tlacitko);
             this.Name = "Typhrydialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Typhrydialog";
+            this.Text = "Vyberte typ hry:";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.Typhrydialog_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tick_trackbar)).EndInit();
