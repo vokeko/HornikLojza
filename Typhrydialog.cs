@@ -12,17 +12,20 @@ namespace Hornik_Lojza
 
         private void vratitse_tlacitko_Click(object sender, EventArgs e)
         {
+            //Skryje okno
+
             vyberhry();
             this.Hide();
-            //Skryje okno
         }
 
         private void standartihra_tlacitko_Click(object sender, EventArgs e)
         {
+            //začne novou hru, se standartními parametry
+
             HerniOkno hra = new HerniOkno();
             hra.Show();
             this.Hide();
-            //začne novou hru, se standartními parametry
+
         }
 
         private void Typhrydialog_Load(object sender, EventArgs e)
@@ -33,15 +36,15 @@ namespace Hornik_Lojza
             kamenu_textbox.Text = Convert.ToString(Kamenu_trackbar.Value);
             drahokamu_textbox.Text = Convert.ToString(drahokamu_trackbar.Value);
 
+            //Ukáže se, když uživatel přejede myší po některém z tlačítek
+
             toolTip1.SetToolTip(standartihra_tlacitko, "Zahrajte si hru s výchozím nastavením");
             toolTip1.SetToolTip(vlastnihra_tlacitko, "Zahrajte si hru podle vlastních hodnot a pravidel");
             toolTip1.SetToolTip(vratitse_tlacitko, "Navrácení do hlavního menu");
-
             toolTip1.SetToolTip(tick_trackbar, "Jak často hra kontroluje, kdy mají padat kameny. Čím je číslo vyšší, tím je snažší se jim vyhnout.");
             toolTip1.SetToolTip(Kamenu_trackbar, "Kolik překážek se vygeneruje na herní ploše");
             toolTip1.SetToolTip(drahokamu_trackbar, "Kolik drahokamů k sebrání se vygeneruje na herní ploše");
             toolTip1.SetToolTip(potvrd_tlacitko, "Potvrdit změny a začít novou hru?");
-            //Ukáže se, když uživatel přejede myší po některém z tlačítek
         }
 
         private void vlastnihra_tlacitko_Click(object sender, EventArgs e)
@@ -75,6 +78,9 @@ namespace Hornik_Lojza
         }
         private void vlastnihra()
         {
+            //Skryje tlačítka a ukáže nové ovládací prvky, sloužící pro výběr parametrů vlastní hry
+            //(pozn. - v budoucnu)
+
             vlastnihra_tlacitko.Hide();
             standartihra_tlacitko.Hide();
             potvrd_tlacitko.Show();
@@ -89,8 +95,7 @@ namespace Hornik_Lojza
             drahokamu_label.Show();
             drahokamu_textbox.Show();
             drahokamu_trackbar.Show();
-            //Skryje tlačítka a ukáže nové ovládací prvky, sloužící pro výběr parametrů vlastní hry
-            //(pozn. - v budoucnu)
+
         }
 
         private void tick_trackbar_Scroll(object sender, EventArgs e)
